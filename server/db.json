@@ -87,6 +87,19 @@
       "notes": "hi",
       "id": 1604589594377,
       "profileUrl": "../../assets/profile-images/Ellipse -8.png"
+    },
+    {
+      "name": "Partha",
+      "departMent": [
+        "HR",
+        "Sales"
+      ],
+      "gender": "male",
+      "salary": "2300",
+      "startDate": "16 Dec 2018",
+      "notes": "nothing",
+      "id": 1604589594378,
+      "profileUrl": "../../assets/profile-images/Ellipse -3.png"
     }
   ]
 }
