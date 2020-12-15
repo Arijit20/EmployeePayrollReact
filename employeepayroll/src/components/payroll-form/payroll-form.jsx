@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import profile1 from 'E:/employeepayrollproject/emp_payroll/employeepayroll/src/assets/profile-images/Ellipse -3.png';
-import profile2 from 'E:/employeepayrollproject/emp_payroll/employeepayroll/src/assets/profile-images/Ellipse -1.png';
-import profile3 from 'E:/employeepayrollproject/emp_payroll/employeepayroll/src/assets/profile-images/Ellipse -8.png';
-import profile4 from 'E:/employeepayrollproject/emp_payroll/employeepayroll/src/assets/profile-images/Ellipse -7.png';
+import profile1 from '../../assets/profile-images/Ellipse -3.png';
+import profile2 from '../../assets/profile-images/Ellipse -1.png';
+import profile3 from '../../assets/profile-images/Ellipse -8.png';
+import profile4 from '../../assets/profile-images/Ellipse -7.png';
 import './payroll-form.css';
-import logo from 'E:/employeepayrollproject/emp_payroll/employeepayroll/src/assets/images/logo.png'
+import EmployeeService from "../../services/employee-service";
+import logo from '../../assets/images/logo.png'
 import { useParams, Link, withRouter } from 'react-router-dom';
 
 const PayrollForm = (props) => {
     let initialValue = {
         name: '',
         profileArray: [
-            { url: 'E:/employeepayrollproject/emp_payroll/employeepayroll/src/assets/profile-images/Ellipse -3.png' },
-            { url: 'E:/employeepayrollproject/emp_payroll/employeepayroll/src/assets/profile-images/Ellipse 1.png' },
-            { url: 'E:/employeepayrollproject/emp_payroll/employeepayroll/src/assets/profile-images/Ellipse -8.png' },
-            { url: 'E:/employeepayrollproject/emp_payroll/employeepayroll/src/assets/profile-images/Ellipse -7.png' }
+            { url: '../../assets/profile-images/Ellipse -3.png' },
+            { url: '../../assets/profile-images/Ellipse 1.png' },
+            { url: '../../assets/profile-images/Ellipse -8.png' },
+            { url: '../../assets/profile-images/Ellipse -7.png' }
 
         ],
         allDepartment: [
@@ -41,6 +42,7 @@ const PayrollForm = (props) => {
         }
     }
     const [formValue, setForm] = useState(initialValue);
+    const employeeService = new EmployeeService();
   
     const changeValue = (event) => {
         setForm({ ...formValue, [event.target.name]: event.target.value })
@@ -99,8 +101,25 @@ const PayrollForm = (props) => {
     }
     const save = async (event) => {
         event.preventDefault();
-     
-    }
+        let object = {
+          name: formValue.name,
+          departMent: formValue.departMentValue,
+          gender: formValue.gender,
+          salary: formValue.salary,
+          startDate: `${formValue.day} ${formValue.month} ${formValue.year}`,
+          notes: formValue.notes,
+          id: formValue.id,
+          profileUrl: formValue.profileUrl,
+        };
+        employeeService.addEmployee(object)
+          .then((data) => {
+            console.log("data added");
+            props.history.push("");
+          })
+          .catch((err) => {
+            console.log("err while Add");
+          });
+        };
   
     const reset = () => {
         setForm({ ...initialValue, id: formValue.id, isUpdate: formValue.isUpdate });
@@ -130,19 +149,19 @@ const PayrollForm = (props) => {
                         <label className="label text" htmlFor="profileUrl">Profile image</label>
                         <div className="profile-radio-button">
                             <label >
-                                <input type="radio" checked={formValue.profileUrl === 'E:/employeepayrollproject/emp_payroll/employeepayroll/src/assets/profile-images/Ellipse -3.png'} name="profileUrl" value="../../assets/profile-images/Ellipse -3.png" onChange={changeValue} />
+                                <input type="radio" checked={formValue.profileUrl === '../../assets/profile-images/Ellipse -3.png'} name="profileUrl" value="../../assets/profile-images/Ellipse -3.png" onChange={changeValue} />
                                 <img className="profile" src={profile1} alt="profile" />
                             </label>
                             <label >
-                                <input type="radio" name="profileUrl" checked={formValue.profileUrl === 'E:/employeepayrollproject/emp_payroll/employeepayroll/src/assets/profile-images/Ellipse 1.png'} value="../../assets/profile-images/Ellipse 1.png" onChange={changeValue} />
+                                <input type="radio" name="profileUrl" checked={formValue.profileUrl === '../../assets/profile-images/Ellipse 1.png'} value="../../assets/profile-images/Ellipse 1.png" onChange={changeValue} />
                                 <img className="profile" src={profile2} alt="profile" />
                             </label>
                             <label >
-                                <input type="radio" name="profileUrl" checked={formValue.profileUrl === 'E:/employeepayrollproject/emp_payroll/employeepayroll/src/assets/profile-images/Ellipse -8.png'} value="../../assets/profile-images/Ellipse -8.png" onChange={changeValue} />
+                                <input type="radio" name="profileUrl" checked={formValue.profileUrl === '../../assets/profile-images/Ellipse -8.png'} value="../../assets/profile-images/Ellipse -8.png" onChange={changeValue} />
                                 <img className="profile" src={profile3} alt="profile" />
                             </label>
                             <label >
-                                <input type="radio" name="profileUrl" checked={formValue.profileUrl === 'E:/employeepayrollproject/emp_payroll/employeepayroll/src/assets/profile-images/Ellipse -7.png'} value="../../assets/profile-images/Ellipse -7.png" onChange={changeValue} />
+                                <input type="radio" name="profileUrl" checked={formValue.profileUrl === '../../assets/profile-images/Ellipse -7.png'} value="../../assets/profile-images/Ellipse -7.png" onChange={changeValue} />
                                 <img className="profile" src={profile4} alt="profile" />
                             </label>
 

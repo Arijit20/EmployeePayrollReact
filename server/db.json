@@ -1,0 +1,92 @@
+{
+  "employee": [
+    {
+      "name": "Amir",
+      "departMent": [
+        "HR"
+      ],
+      "gender": "male",
+      "salary": "50000",
+      "startDate": "1 Jan 2020",
+      "notes": "",
+      "id": 1604589594365,
+      "profileUrl": "../../assets/profile-images/Ellipse 1.png"
+    },
+    {
+      "name": "Mohit Mohit",
+      "departMent": [
+        "Engineer"
+      ],
+      "gender": "male",
+      "salary": "5000",
+      "startDate": "1 May 2020",
+      "notes": "",
+      "id": 1604589594368,
+      "profileUrl": "../../assets/profile-images/Ellipse -8.png"
+    },
+    {
+      "name": "Parsiya",
+      "departMent": [
+        "HR",
+        "Finance"
+      ],
+      "gender": "male",
+      "salary": "40000",
+      "startDate": "1 Oct 2017",
+      "notes": "Test",
+      "id": 1604589594369,
+      "profileUrl": "../../assets/profile-images/Ellipse-8.png"
+    },
+    {
+      "name": "Akram Kabirul",
+      "departMent": [
+        "HR"
+      ],
+      "gender": "male",
+      "salary": "54545",
+      "startDate": "1 Jan 2020",
+      "notes": "",
+      "id": 1604589594374,
+      "profileUrl": "../../assets/profile-images/Ellipse-3.png"
+    },
+    {
+      "name": "Aditi Roy",
+      "departMent": [
+        "HR",
+        "Sales"
+      ],
+      "gender": "female",
+      "salary": "10000",
+      "startDate": "1 Jan 2020",
+      "notes": "kerash",
+      "id": 1604589594375,
+      "profileUrl": "../../assets/profile-images/Ellipse-7.png"
+    },
+    {
+      "name": "Gautham Menon",
+      "departMent": [
+        "HR",
+        "Others"
+      ],
+      "gender": "male",
+      "salary": "100000000",
+      "startDate": "1 Jan 2016",
+      "notes": "",
+      "id": 1604589594376,
+      "profileUrl": "../../assets/profile-images/Ellipse-8.png"
+    },
+    {
+      "name": "Arijit",
+      "departMent": [
+        "Engineer",
+        "Others"
+      ],
+      "gender": "male",
+      "salary": "7900",
+      "startDate": "1 Jan 2019",
+      "notes": "hi",
+      "id": 1604589594377,
+      "profileUrl": "../../assets/profile-images/Ellipse -8.png"
+    }
+  ]
+}
