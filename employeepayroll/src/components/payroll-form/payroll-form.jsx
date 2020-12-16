@@ -3,7 +3,7 @@ import profile1 from '../../assets/profile-images/Ellipse -3.png';
 import profile2 from '../../assets/profile-images/Ellipse -1.png';
 import profile3 from '../../assets/profile-images/Ellipse -8.png';
 import profile4 from '../../assets/profile-images/Ellipse -7.png';
-import './payroll-form.css';
+import './payroll-form.scss';
 import EmployeeService from "../../services/employee-service";
 import logo from '../../assets/images/logo.png'
 import { useParams, Link, withRouter } from 'react-router-dom';
@@ -44,6 +44,25 @@ const PayrollForm = (props) => {
     const [formValue, setForm] = useState(initialValue);
     const params = useParams();
     const employeeService = new EmployeeService();
+
+    useEffect(() => {
+        if (params.id) {
+          getDataById(params.id);
+        }
+      }, []);
+
+      const getDataById = (id) => {
+        employeeService
+          .getEmployee(id)
+          .then((data) => {
+            console.log("data is ", data.data);
+            let obj = data.data;
+            setData(obj);
+          })
+          .catch((err) => {
+            console.log("err is ", err);
+          });
+      };
 
     const setData = (obj) => {
         let array = obj.startDate.split(" ");
@@ -127,16 +146,28 @@ const PayrollForm = (props) => {
           id: formValue.id,
           profileUrl: formValue.profileUrl,
         };
-        employeeService.addEmployee(object)
-          .then((data) => {
-            console.log("data added");
-            props.history.push("");
-          })
-          .catch((err) => {
-            console.log("err while Add");
-          });
+        if (formValue.isUpdate) {
+            employeeService
+              .updateEmployee(object)
+              .then((data) => {
+                console.log("data after update", data);
+                props.history.push("");
+              })
+              .catch((err) => {
+                console.log("Error after update");
+              });
+          } else {
+            employeeService
+              .addEmployee(object)
+              .then((data) => {
+                console.log("Employee payroll added");
+                props.history.push("");
+              })
+              .catch((err) => {
+                console.log("error occured while adding employee");
+              });
+          }
         };
-  
     const reset = () => {
         setForm({ ...initialValue, id: formValue.id, isUpdate: formValue.isUpdate });
 
