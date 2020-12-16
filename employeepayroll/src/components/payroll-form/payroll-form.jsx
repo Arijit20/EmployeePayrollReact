@@ -3,7 +3,7 @@ import profile1 from '../../assets/profile-images/Ellipse -3.png';
 import profile2 from '../../assets/profile-images/Ellipse -1.png';
 import profile3 from '../../assets/profile-images/Ellipse -8.png';
 import profile4 from '../../assets/profile-images/Ellipse -7.png';
-import './payroll-form.css';
+import './payroll-form.scss';
 import EmployeeService from "../../services/employee-service";
 import logo from '../../assets/images/logo.png'
 import { useParams, Link, withRouter } from 'react-router-dom';
