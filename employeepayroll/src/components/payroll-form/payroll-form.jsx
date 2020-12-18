@@ -69,7 +69,8 @@ const PayrollForm = (props) => {
         setForm({
           ...formValue,
           ...obj,
-          departMentValue: obj.departMent,
+          profileUrl: obj.profile,
+          departMentValue: obj.department,
           isUpdate: true,
           day: array[0],
           month: array[1],
@@ -138,13 +139,13 @@ const PayrollForm = (props) => {
         }
         let object = {
           name: formValue.name,
-          departMent: formValue.departMentValue,
+          department: formValue.departMentValue,
           gender: formValue.gender,
           salary: formValue.salary,
           startDate: `${formValue.day} ${formValue.month} ${formValue.year}`,
           notes: formValue.notes,
           id: formValue.id,
-          profileUrl: formValue.profileUrl,
+          profile: formValue.profileUrl,
         };
         if (formValue.isUpdate) {
             employeeService

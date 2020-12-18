@@ -45,13 +45,13 @@ const Display = (props) => {
             <tr key={ind}>
               <td><img className="profile" 
               src={
-                element.profileUrl ===
+                element.profile ===
                 "../../assets/profile-images/Ellipse -3.png"
                   ? profile1
-                  : element.profileUrl ===
+                  : element.profile ===
                     "../../assets/profile-images/Ellipse -1.png"
                   ? profile2
-                  : element.profileUrl ===
+                  : element.profile ===
                     "../../assets/profile-images/Ellipse -8.png"
                   ? profile3
                   : profile4
@@ -62,8 +62,8 @@ const Display = (props) => {
               <td>{element.name}</td>
               <td className="gender">{element.gender}</td>
               <td>
-                {element.departMent &&
-                  element.departMent.map((dept) => (
+                {element.department &&
+                  element.department.map((dept) => (
                     <div className="dept-label">{dept}</div>
                   ))}
               </td>
