@@ -79,17 +79,22 @@ const PayrollForm = (props) => {
       };
   
     const changeValue = (event) => {
-        setForm({ ...formValue, [event.target.name]: event.target.value })
-    }
+        setForm({ ...formValue, [event.target.name]: event.target.value });
+        if(event.target.id == "name"){
+        if (RegExp("^[A-Z]{1}[a-zA-Z\\s]{2,}$").test(event.target.value))
+            formValue.error.name = "";
+        else formValue.error.name = "Name must start with capital letter and have more than 3 letters";
+    }}
 
     const onCheckChange = (name) => {
-        let index = formValue.departMentValue.indexOf(name);
-       
+        let index = formValue.departMentValue.indexOf(name); 
+               
         let checkArray = [...formValue.departMentValue]
         if (index > -1)
             checkArray.splice(index, 1)
         else
             checkArray.push(name);
+
         setForm({ ...formValue, departMentValue: checkArray });
     }
     const getChecked = (name) => {
@@ -106,10 +111,13 @@ const PayrollForm = (props) => {
             profileUrl: '',
             startDate: ''
         }
-        if (formValue.name.length < 1) {
-            error.name = 'name is required field'
-            isError = true;
-        }
+       
+       if(RegExp("^[A-Z]{1}[a-zA-Z\\s]{2,}$").test(formValue.name)){
+           error.name = "";
+       }else{
+           error.name = "First letter should be capital & min 3 letters";
+           isError = true;
+       }
         if (formValue.gender.length < 1) {
             error.gender = 'gender is required field'
             isError = true;
@@ -188,13 +196,14 @@ const PayrollForm = (props) => {
             <div className="content">
                 <form className="form" action="#" onSubmit={save}>
                     <div className="form-head">Employee Payroll form</div>
+                    <p style={{color: "red"}}>* marked fields are mandatory</p>
                     <div className="row">
-                        <label className="label text" htmlFor="name">Name</label>
+                        <label className="label text" htmlFor="name">Name<span style={{color: "red"}}>*</span></label>
                         <input className="input" type="text" id="name" name="name" value={formValue.name} onChange={changeValue} placeholder="Your name.." />
                     </div>
                     <div className="error" > {formValue.error.name} </div>
                     <div className="row">
-                        <label className="label text" htmlFor="profileUrl">Profile image</label>
+                        <label className="label text" htmlFor="profileUrl">Profile image<span style={{color: "red"}}>*</span></label>
                         <div className="profile-radio-button">
                             <label >
                                 <input type="radio" checked={formValue.profileUrl === '../../assets/profile-images/Ellipse -3.png'} name="profileUrl" value="../../assets/profile-images/Ellipse -3.png" onChange={changeValue} />
@@ -217,7 +226,7 @@ const PayrollForm = (props) => {
                     </div>
                     <div className="error" > {formValue.error.profileUrl} </div>
                     <div className="row">
-                        <label className="label text" htmlFor="gender">Gender</label>
+                        <label className="label text" htmlFor="gender">Gender<span style={{color: "red"}}>*</span></label>
                         <div>
                             <input type="radio" id="male" checked={formValue.gender === 'male'} onChange={changeValue} name="gender" value="male" />
                             <label className="text" htmlFor="male">Male</label>
@@ -228,7 +237,7 @@ const PayrollForm = (props) => {
                     <div className="error" > {formValue.error.gender} </div>
 
                     <div className="row">
-                        <label className="label text" htmlFor="department">Department</label>
+                        <label className="label text" htmlFor="department">Department<span style={{color: "red"}}>*</span></label>
                         <div>
                             {formValue.allDepartment.map(item => (
                                 <span key={item}>
@@ -244,9 +253,10 @@ const PayrollForm = (props) => {
 
 
                     <div className="row">
-                        <label className="label text" htmlFor="salary">Salary</label>
+                        <label className="label text" htmlFor="salary">Salary<span style={{color: "red"}}>*</span></label>
                         <input className="input" type="range" onChange={changeValue} id="salary" value={formValue.salary} name="salary" placeholder="Salary"
                         min="1000" max="10000" step="100"/>
+                        <span>{formValue.salary}</span>
                     </div>
                     <div className="error" > {formValue.error.salary} </div>
 

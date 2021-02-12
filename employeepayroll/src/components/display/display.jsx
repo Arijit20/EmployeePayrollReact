@@ -17,6 +17,7 @@ const Display = (props) => {
   };
 
   const remove = (employeeId) => {
+    if(window.confirm("Are you sure you want to delete?")){
     employeeService
       .deleteEmployee(employeeId)
       .then((data) => {
@@ -26,6 +27,7 @@ const Display = (props) => {
       .catch((err) => {
         console.log("error after delete", err);
       });
+    }
   };
 
   return (
